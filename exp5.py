@@ -1,7 +1,6 @@
 import nltk
 from nltk import CFG
 from nltk.parse import ChartParser
-
 # Define grammar
 grammar = CFG.fromstring("""
 S -> NP VP
