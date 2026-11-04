@@ -1,6 +1,5 @@
 from transformers import MarianMTModel, MarianTokenizer
 
-
 # ---------------------------------------
 # 1. Select the translation model
 # ---------------------------------------
