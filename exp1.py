@@ -1,6 +1,5 @@
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
-
 documents = [
     "I love machine learning",
     "I love deep learning",
