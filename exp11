@@ -1,0 +1,40 @@
+import nltk
+from nltk.util import bigrams
+from nltk.probability import FreqDist, ConditionalFreqDist
+
+# Sample training corpus
+corpus = [
+    "I love natural language processing",
+    "I love machine learning",
+    "I enjoy natural language processing"
+]
+
+# Tokenize sentences
+tokens = []
+for sentence in corpus:
+    words = sentence.lower().split()
+    tokens.extend(["<s>"] + words + ["</s>"])
+
+# Create bigrams
+bigram_list = list(bigrams(tokens))
+
+# Calculate bigram frequencies
+bigram_freq = ConditionalFreqDist(bigram_list)
+unigram_freq = FreqDist(tokens)
+
+# Vocabulary size
+V = len(unigram_freq)
+
+# Laplace smoothing probability
+def bigram_probability(w1, w2):
+    count_bigram = bigram_freq[w1][w2]
+    count_unigram = unigram_freq[w1]
+
+    probability = (count_bigram + 1) / (count_unigram + V)
+    return probability
+
+# Test bigrams
+print("Bigram Probabilities with Laplace Smoothing:")
+print("P(love | I) =", round(bigram_probability("i", "love"), 4))
+print("P(machine | love) =", round(bigram_probability("love", "machine"), 4))
+print("P(data | love) =", round(bigram_probability("love", "data"), 4))
