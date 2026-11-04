@@ -1,0 +1,42 @@
+import requests
+import nltk
+import re
+from bs4 import BeautifulSoup
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.probability import FreqDist
+
+# Download required resources
+nltk.download('punkt')
+nltk.download('punkt_tab')
+nltk.download('stopwords')
+
+# Online text source
+url = "https://www.gutenberg.org/files/11/11-0.txt"
+
+# Fetch online text
+response = requests.get(url, timeout=15)
+response.raise_for_status()
+text = response.text
+
+# Convert to lowercase
+text = text.lower()
+
+# Tokenize text
+words = word_tokenize(text)
+
+# Remove punctuation and stop words
+stop_words = set(stopwords.words('english'))
+clean_words = [
+    word for word in words
+    if re.fullmatch(r"[a-z]+", word)
+    and word not in stop_words
+]
+
+# Calculate word frequency
+frequency = FreqDist(clean_words)
+
+# Display 10 most frequent words
+print("Top 10 Most Frequent Words:")
+for word, count in frequency.most_common(10):
+    print(word, ":", count)
