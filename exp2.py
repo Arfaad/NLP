@@ -1,7 +1,6 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-
 document1 = "Natural Language Processing is a branch of Artificial Intelligence"
 
 document2 = "Natural Language Processing is an important field of Artificial Intelligence"
