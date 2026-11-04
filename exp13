@@ -1,0 +1,27 @@
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Sample documents
+documents = [
+    "I love natural language processing",
+    "I love machine learning",
+    "Natural language processing is interesting"
+]
+
+# Convert documents into vectors
+vectorizer = CountVectorizer()
+vectors = vectorizer.fit_transform(documents)
+
+# Display vocabulary
+print("Vocabulary:")
+print(vectorizer.get_feature_names_out())
+
+# Display vector representations
+print("\nDocument Vectors:")
+print(vectors.toarray())
+
+# Calculate cosine similarity
+similarity = cosine_similarity(vectors)
+
+print("\nCosine Similarity Matrix:")
+print(similarity.round(2))
