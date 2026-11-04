@@ -1,6 +1,5 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
 # Given corpus
 documents = [
     "Machine learning is a branch of artificial intelligence",
